@@ -8,6 +8,10 @@ App.chat = App.cable.subscriptions.create "WebNotificationsChannel",
     $('body').append($('<li>').text(data.message))
 
 $ ->
-  $('#button').on 'click', ->
+  $('#form').on 'submit', (e) ->
     App.chat.send
       message: $('#input').val()
+
+    message: $('#input').val('')
+
+    e.preventDefault()
