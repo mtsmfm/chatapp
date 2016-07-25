@@ -3,7 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 App.chat = App.cable.subscriptions.create "WebNotificationsChannel",
-  connected: ->
-    console.log 'hoge'
   received: (data) ->
     console.log data
+    $('body').append($('<li>').text(data.message))
+
+$ ->
+  $('#button').on 'click', ->
+    App.chat.send
+      message: $('#input').val()
